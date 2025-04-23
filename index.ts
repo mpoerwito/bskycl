@@ -12,18 +12,9 @@ const agent = new AtpAgent({
 async function main() {
     await agent.login({ identifier: process.env.BLUESKY_USERNAME!, password: process.env.BLUESKY_PASSWORD!})
     await agent.post({
-        text: "🙂"
+        text: "Never trouble trouble until trouble troubles you."
     });
-    console.log("Bot activated!")
+    console.log("Check the app for this post.");
 }
 
 main();
-
-
-// Run this on a cron job
-// const scheduleExpressionMinute = '* * * * *'; // Run once every minute for testing
-// const scheduleExpression = '0 */3 * * *'; // Run once every three hours in prod
-
-// const job = new CronJob(scheduleExpression, main); // change to scheduleExpressionMinute for testing
-
-// job.start();
