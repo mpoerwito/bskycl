@@ -30,11 +30,23 @@ dotenv.config();
 const agent = new api_1.AtpAgent({
     service: 'https://bsky.social',
 });
-async function main() {
+async function submitPost(thePost) {
     await agent.login({ identifier: process.env.BLUESKY_USERNAME, password: process.env.BLUESKY_PASSWORD });
     await agent.post({
-        text: "Never trouble trouble until trouble troubles you."
+        text: thePost
     });
     console.log("Check the app for this post.");
+}
+async function main() {
+    const args = process.argv.slice(2);
+    if (args.length < 1) {
+        console.error("Please provide a post to submit.");
+        process.exit(1);
+    }
+    else {
+        //var post = Math.floor(Date.now() / 1000);
+        await submitPost(args[0].toString());
+        process.exit(0);
+    }
 }
 main();
