@@ -35,7 +35,8 @@ async function submitPost(thePost) {
     await agent.post({
         text: thePost
     });
-    console.log("Check the app for this post.");
+    const timestamp = new Date(Date.now());
+    console.log("done. ** " + thePost + "  ** posted at " + timestamp.toISOString());
 }
 async function main() {
     const args = process.argv.slice(2);
@@ -44,7 +45,6 @@ async function main() {
         process.exit(1);
     }
     else {
-        //var post = Math.floor(Date.now() / 1000);
         await submitPost(args[0].toString());
         process.exit(0);
     }
